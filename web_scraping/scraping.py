@@ -1,4 +1,7 @@
 import pandas as pd
+import requests
 url="https://en.wikipedia.org/wiki/List_of_The_Simpsons_episodes"
-simpsons=pd.read_html(url,header=0,displayed_only=False,flavor="lxml",attrs={"class":"wikitable"})
-print(len(simpsons))
+headers={"User-Agent":"Mozilla/5.0(Windows NT 10.0; Win64; x64)"}
+html=requests.get(url,headers=headers).text
+simpsons=pd.read_html(html)
+print(simpsons)
